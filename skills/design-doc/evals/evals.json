@@ -1,0 +1,40 @@
+{
+  "skill_name": "design-doc",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Webアプリを新規で作りたい。フロントエンドはReactで考えてるんだけど、バックエンドとDBをどうするか相談したい。あ、TypeScriptで統一したい。ユーザーは最初は少ないけど、将来的には数万人くらいを想定してる。\n\n(Claudeの提案を受けて) じゃあバックエンドはHonoにしよう。DBはどうしたらいい？\n\n(Claudeの提案を受けて) PostgreSQLにする。ORMはPrismaで。",
+      "expected_output": "Claudeが相談役として選択肢のメリデメを提示した上で、合意後にdocs/architecture.mdとADRファイルが作成される。ドキュメントの保存先について最初に確認がある。",
+      "files": [],
+      "expectations": [
+        "Claudeがバックエンドの選択肢を複数提示している",
+        "Claudeがデータベースの選択肢を複数提示している",
+        "docs/architecture.md が作成されている",
+        "docs/adr/ 配下にADRファイルが作成されている",
+        "ドキュメントの保存先について確認している"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "前に設計したときMySQLを選んだんだけど、やっぱりPostgreSQLに変えたい。JSONBが必要になったんだよね。\n\n(Claudeの応答を受けて) うん、変更で進めよう。",
+      "expected_output": "既存のarchitecture.mdのMySQL記述がPostgreSQLに書き換えられる(追記ではない)。ADRが新規作成される。",
+      "files": [],
+      "expectations": [
+        "既存のarchitecture.mdが追記ではなく書き換えで更新されている",
+        "MySQL→PostgreSQL変更のADRが作成されている",
+        "Claudeが変更のメリット・デメリットや影響について言及している"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "ユーザー認証が必要なんだけど、どうしたらいい？\n\n(Claudeの質問を受けて) SNSログインは要らない。メールとパスワードだけでいい。あ、でも将来的にはGoogleログインくらいは入れるかも。\n\n(Claudeの提案を受けて) じゃあそれでいこう。",
+      "expected_output": "Claudeが認証方式について具体的に掘り下げる質問をし、要件が明確になってからdocs/requirements.mdに書き出す。将来のGoogleログインは未決事項として記録される。",
+      "files": [],
+      "expectations": [
+        "Claudeが認証方式について掘り下げる質問をしている",
+        "docs/requirements.md に認証要件が記載されている",
+        "docs/open-questions.md にGoogleログイン対応が未決事項として記録されている"
+      ]
+    }
+  ]
+}
